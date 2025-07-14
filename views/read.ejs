@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Simple theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    // On load, set theme from localStorage
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  </script>
+  <style>
+    /* Super formal, neutral, and professional enhancements */
+    .formal-card {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      border-radius: 1.5rem;
+      border: 1.5px solid #cbd5e1;
+      background: linear-gradient(135deg, #f1f5f9 60%, #e0e7ef 100%);
+      box-shadow: 0 8px 32px 0 rgba(51, 65, 85, 0.12), 0 1.5px 4px 0 rgba(71, 85, 105, 0.07);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .formal-card:hover {
+      box-shadow: 0 16px 48px 0 rgba(51, 65, 85, 0.18), 0 3px 12px 0 rgba(71, 85, 105, 0.13);
+      transform: translateY(-4px) scale(1.025);
+    }
+    .formal-label {
+      font-weight: 600;
+      color: #2563eb;
+      letter-spacing: 0.5px;
+    }
+    .formal-value {
+      color: #334155;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+    .formal-btn {
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-radius: 0.7rem;
+      padding: 0.7rem 2.2rem;
+      background: linear-gradient(90deg, #2563eb 0%, #0f172a 100%);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(51, 65, 85, 0.13);
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .formal-btn:hover {
+      background: linear-gradient(90deg, #1e293b 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .formal-header {
+      font-family: 'Merriweather', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #cbd5e1;
+    }
+    .formal-footer {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      font-size: 1.1rem;
+      color: #64748b;
+      background: rgba(226, 232, 240, 0.8);
+      border-radius: 1.5rem 1.5rem 0 0;
+      box-shadow: 0 -2px 12px rgba(51, 65, 85, 0.07);
+    }
+    @media (max-width: 768px) {
+      .formal-header { font-size: 2rem; }
+      .formal-card { padding: 1.5rem !important; }
+    }
+    html.dark .formal-card {
+      background: linear-gradient(135deg, #1e293b 60%, #334155 100%);
+      border-color: #334155;
+    }
+    html.dark .formal-label { color: #60a5fa; }
+    html.dark .formal-value { color: #e0e7ef; }
+    html.dark .formal-header { color: #60a5fa; text-shadow: 0 2px 8px #1e293b; }
+    html.dark .formal-footer { background: #1e293b; color: #e0e7ef; }
+  </style>
+</head>
+<body class="bg-gradient-to-tr from-slate-100 via-slate-200 to-blue-100 dark:from-slate-900 dark:via-slate-800 dark:to-black min-h-screen flex flex-col transition-colors duration-500">
+  <header class="w-full py-10 flex flex-col items-center bg-gradient-to-r from-slate-200 via-blue-100 to-slate-300 dark:from-slate-900 dark:via-slate-800 dark:to-black shadow-2xl rounded-b-3xl mb-12 transition-colors duration-500">
+    <div class="flex w-full justify-between items-center max-w-3xl px-4">
+      <h1 class="formal-header">User Details</h1>
+      <button onclick="toggleTheme()" class="ml-4 px-4 py-2 rounded-xl bg-slate-200/60 dark:bg-slate-900/60 text-slate-900 dark:text-blue-200 font-bold shadow hover:bg-slate-300 hover:dark:bg-slate-800 transition">
+        <span class="hidden dark:inline">🌞 Light</span>
+        <span class="inline dark:hidden">🌙 Dark</span>
+      </button>
+    </div>
+    <p class="mt-2 text-xl text-blue-700 dark:text-blue-200 font-medium tracking-wide">See all registered users below</p>
+  </header>
+  <main class="flex-1 flex flex-col items-center">
+    <div class="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+      <% if (users && users.length > 0) { %>
+        <% users.forEach(function(e) { %>
+          <div class="formal-card p-8 flex flex-col items-center gap-4">
+            <img src="<%= e.image %>" alt="User Image" class="w-32 h-32 rounded-full object-cover border-4 border-blue-300 dark:border-slate-700 shadow-lg hover:scale-110 transition-transform duration-200" />
+            <div class="text-center space-y-1">
+              <div><span class="formal-label">Name:</span> <span class="formal-value"><%= e.name %></span></div>
+              <div><span class="formal-label">Email:</span> <span class="formal-value"><%= e.email %></span></div>
+              <div><span class="formal-label">Age:</span> <span class="formal-value"><%= e.age %></span></div>
+              <div><span class="formal-label">CNIC:</span> <span class="formal-value"><%= e.cnic %></span></div>
+              <div><span class="formal-label">Location:</span> <span class="formal-value"><%= e.location %></span></div>
+            </div>
+            <form action="/read/<%= e._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this user?')" class="mt-2">
+              <button type="submit" class="formal-btn">
+                Delete
+              </button>
+            </form>
+            <a href="/edit/<%= e._id %>" class="formal-btn text-center">Update</a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="col-span-2 text-center py-20">
+          <p class="text-2xl text-slate-400 dark:text-blue-200 font-semibold">No users found.</p>
+        </div>
+      <% } %>
+    </div>
+    <a href="/" class="mt-12 inline-block px-8 py-3 bg-gradient-to-r from-blue-500 via-slate-500 to-slate-700 dark:from-slate-900 dark:via-slate-800 dark:to-black text-white rounded-xl shadow-lg font-bold text-lg hover:from-blue-600 hover:via-slate-600 hover:to-slate-800 hover:dark:from-slate-800 hover:dark:via-slate-900 hover:dark:to-black transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+      Go Back
+    </a>
+        
+  </main>
+  <footer class="formal-footer w-full py-8 text-center text-lg mt-16 font-semibold tracking-wide transition-colors duration-500">
+    &copy; <%= new Date().getFullYear() %> User Registration App. All rights

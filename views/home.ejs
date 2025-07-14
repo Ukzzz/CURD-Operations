@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Theme toggle logic
+      function toggleTheme() {
+        const html = document.documentElement;
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          html.classList.remove('black');
+          localStorage.setItem('theme', 'light');
+        } else if (html.classList.contains('black')) {
+          html.classList.remove('black');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      function toggleBlackTheme() {
+        const html = document.documentElement;
+        html.classList.remove('dark');
+        html.classList.add('black');
+        localStorage.setItem('theme', 'black');
+      }
+      window.onload = () => {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'black') {
+          document.documentElement.classList.add('black');
+        }
+      }
+    </script>
+    <style>
+      html.black body {
+        background: #000 !important;
+      }
+      html.black .bg-gradient-to-tr,
+      html.black .bg-gradient-to-r,
+      html.black .bg-gradient-to-pink-500 {
+        background: #000 !important;
+      }
+      html.black .text-white,
+      html.black .text-gray-500,
+      html.black .text-purple-700,
+      html.black .text-blue-700,
+      html.black .text-pink-700 {
+        color: #fff !important;
+      }
+      html.black input,
+      html.black textarea {
+        background: #222 !important;
+        color: #fff !important;
+        border-color: #444 !important;
+      }
+      html.black .shadow-inner,
+      html.black .shadow-xl,
+      html.black .shadow-2xl {
+        box-shadow: none !important;
+      }
+      html.black .border,
+      html.black .ring-4 {
+        border-color: #222 !important;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-tr from-blue-300 via-purple-200 to-pink-200 dark:from-gray-900 dark:via-gray-800 dark:to-black min-h-screen flex flex-col transition-colors duration-500">
+    <header class="w-full py-12 flex flex-col items-center bg-gradient-to-r from-purple-500 via-pink-400 to-blue-400 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 shadow-2xl rounded-b-3xl mb-12 transition-colors duration-500">
+      <div class="flex w-full justify-between items-center max-w-3xl px-4">
+        <h1 class="text-5xl font-black text-white tracking-widest drop-shadow-2xl">User Registration</h1>
+        <div class="flex gap-2">
+          <button onclick="toggleTheme()" class="ml-4 px-4 py-2 rounded-xl bg-black/20 dark:bg-white/20 text-white dark:text-gray-200 font-bold shadow hover:bg-black/40 hover:dark:bg-white/30 transition">
+            <span class="hidden dark:inline">🌞 Light</span>
+            <span class="inline dark:hidden">🌙 Dark</span>
+          </button>
+          <button onclick="toggleBlackTheme()" class="px-4 py-2 rounded-xl bg-black text-white font-bold shadow hover:bg-gray-800 transition">🖤 Black</button>
+        </div>
+      </div>
+      <p class="mt-4 text-xl text-white/90 font-medium tracking-wide">
+        Create your account and join our vibrant community!
+      </p>
+    </header>
+    <main class="flex-1 flex flex-col items-center justify-center">
+      <div class="w-full max-w-lg mx-auto bg-white/70 dark:bg-gray-900/80 backdrop-blur-2xl rounded-3xl shadow-2xl p-12 border border-white/40 dark:border-gray-700 ring-4 ring-purple-200/30">
+        <h2 class="text-3xl font-extrabold text-center text-purple-700 dark:text-purple-300 mb-10 tracking-tight drop-shadow-lg">
+          Register
+        </h2>
+        <form action="/read" method="POST" class="space-y-8">
+          <div>
+            <label for="name" class="block text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your Name"
+              class="w-full px-6 py-4 border-2 border-purple-200 dark:border-purple-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300 focus:border-purple-400 dark:focus:border-purple-500 transition duration-200 hover:border-purple-400 bg-purple-50/70 dark:bg-gray-800 text-lg font-medium placeholder-purple-300 dark:placeholder-purple-400"
+              required
+            />
+          </div>
+            <div>
+            <label for="age" class="block text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">Age</label>
+            <input
+              type="age"
+              id="age"
+              name="age"
+              placeholder="Enter your Age"
+              class="w-full px-6 py-4 border-2 border-blue-200 dark:border-blue-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-400 dark:focus:border-blue-500 transition duration-200 hover:border-blue-400 bg-blue-50/70 dark:bg-gray-800 text-lg font-medium placeholder-blue-300 dark:placeholder-blue-400"
+              required
+            />
+          </div>
+            <div>
+            <label for="cnic" class="block text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">CNIC</label>
+            <input
+              type="cnic"
+              id="cnic"
+              name="cnic"
+              placeholder="Enter your CNIC"
+              class="w-full px-6 py-4 border-2 border-blue-200 dark:border-blue-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-400 dark:focus:border-blue-500 transition duration-200 hover:border-blue-400 bg-blue-50/70 dark:bg-gray-800 text-lg font-medium placeholder-blue-300 dark:placeholder-blue-400"
+              required
+            />
+          </div>
+            <div>
+            <label for="location" class="block text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">Location</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Enter your Location"
+              class="w-full px-6 py-4 border-2 border-blue-200 dark:border-blue-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-400 dark:focus:border-blue-500 transition duration-200 hover:border-blue-400 bg-blue-50/70 dark:bg-gray-800 text-lg font-medium placeholder-blue-300 dark:placeholder-blue-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your Email"
+              class="w-full px-6 py-4 border-2 border-blue-200 dark:border-blue-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-400 dark:focus:border-blue-500 transition duration-200 hover:border-blue-400 bg-blue-50/70 dark:bg-gray-800 text-lg font-medium placeholder-blue-300 dark:placeholder-blue-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="image" class="block text-lg font-semibold text-pink-700 dark:text-pink-300 mb-2">Image URL</label>
+            <input
+              type="url"
+              id="image"
+              name="image"
+              placeholder="Enter your Image URL"
+              class="w-full px-6 py-4 border-2 border-pink-200 dark:border-pink-700 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-300 focus:border-pink-400 dark:focus:border-pink-500 transition duration-200 hover:border-pink-400 bg-pink-50/70 dark:bg-gray-800 text-lg font-medium placeholder-pink-300 dark:placeholder-pink-400"
+              required
+            />
+          </div>
+          <input
+            type="submit"
+            class="w-full py-4 px-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-gray-700 dark:via-purple-800 dark:to-gray-900 text-white font-extrabold rounded-2xl shadow-xl hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:dark:from-gray-800 hover:dark:via-purple-900 hover:dark:to-black transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-2xl tracking-wide border-2 border-white/30"
+            value="Register"
+            Submit
+          >
+        </form>
+        <div class="mt-8 flex justify-center">
+          <a href="/read" class="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-400 dark:from-gray-700 dark:via-purple-800 dark:to-gray-900 text-white rounded-xl shadow-lg font-bold text-lg hover:from-purple-600 hover:via-pink-500 hover:to-blue-500 hover:dark:from-gray-800 hover:dark:via-purple-900 hover:dark:to-black transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+            View Users
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="w-full py-8 text-center text-gray-500 dark:text-gray-300 text-lg mt-16 bg-gradient-to-r from-purple-100 via-pink-100 to-blue-100 dark:from-gray-800 dark:via-gray-900 dark:to-black rounded-t-3xl shadow-inner font-semibold tracking-wide transition-colors duration-500">
+      &copy; <%= new Date().getFullYear() %> User Registration App. All rights reserved.
+    </footer>
+  </body>
+</html>
