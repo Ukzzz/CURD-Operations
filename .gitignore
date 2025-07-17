@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore environment variables
 .env
 
@@ -10,3 +11,8 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+=======
+node_modules/
+
+.env
+>>>>>>> c134afb (add gitignore file)
